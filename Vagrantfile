@@ -37,6 +37,21 @@ EOL
 
   /home/vagrant/install_postgres.sh
 
+  cat >> /home/vagrant/install_node_and_yarn.sh <<'EOL'
+#!/bin/bash
+curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+sudo apt-get install -y nodejs
+
+curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+sudo apt-get update -y
+sudo apt-get install -y yarn
+yarn set version latest
+EOL
+  chmod +x /home/vagrant/install_node_and_yarn.sh
+
+  /home/vagrant/install_node_and_yarn.sh
+
   echo "New Ruby on Rails VM with PostgreSQL successfully created!"
 SHELL
 end
