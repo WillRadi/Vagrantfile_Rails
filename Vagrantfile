@@ -31,7 +31,6 @@ EOL
   cat >> /home/vagrant/install_postgres.sh <<'EOL'
 #!/bin/bash
 sudo apt-get install -y postgresql libpq-dev
-sudo -u postgres createdb 'default_db'
 EOL
   chmod +x /home/vagrant/install_postgres.sh
 
@@ -51,6 +50,10 @@ EOL
   chmod +x /home/vagrant/install_node_and_yarn.sh
 
   /home/vagrant/install_node_and_yarn.sh
+
+  cat >> /home/vagrant/.bashrc <<EOL
+cd /vagrant
+EOL
 
   echo "New Ruby on Rails VM with PostgreSQL successfully created!"
 SHELL
