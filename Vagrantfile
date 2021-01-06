@@ -18,15 +18,16 @@ Vagrant.configure("2") do |config|
   gem install bundler
   gem install rails
 
-  cat >> /home/vagrant/upgrade_distinct.sh <<'EOL'
+  cat >> /home/vagrant/install_libs.sh <<'EOL'
 #!/bin/bash
 sudo apt-get update -y
 sudo apt-get upgrade -y
 sudo apt-get dist-upgrade -y
+sudo apt-get install -y zip mlocate
 EOL
-  chmod +x /home/vagrant/upgrade_distinct.sh
+  chmod +x /home/vagrant/install_libs.sh
 
-  /home/vagrant/upgrade_distinct.sh
+  /home/vagrant/install_libs.sh
 
   cat >> /home/vagrant/install_postgres.sh <<'EOL'
 #!/bin/bash
