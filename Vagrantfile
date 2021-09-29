@@ -1,9 +1,10 @@
-# -*- mode: ruby -*-
-# vi: set ft=ruby :
-
 Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/focal64"
   config.vm.network "forwarded_port", guest: 3000, host: 3000
+  
+  config.vm.provider 'virtualbox' do |v|
+    v.memory = '4096'
+  end
 
   config.vm.provision "shell", privileged: false, inline: <<-SHELL
   sudo apt-get update
@@ -13,7 +14,7 @@ Vagrant.configure("2") do |config|
 
   curl -sSL https://get.rvm.io | bash -s stable
   source $HOME/.rvm/scripts/rvm
-  rvm use --default --install 2.7.2
+  rvm use --default --install 3.0.2
 
   gem install bundler
   gem install rails
@@ -39,7 +40,7 @@ EOL
 
   cat >> /home/vagrant/install_node_and_yarn.sh <<'EOL'
 #!/bin/bash
-curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
 sudo apt-get install -y nodejs
 
 curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
