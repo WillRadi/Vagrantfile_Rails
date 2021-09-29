@@ -2,10 +2,10 @@
 
 **VM ready to code with:**
 * Ubuntu 20.04
-* Node 15.x
+* Node 16.x
 * Yarn 1.x
-* Ruby 3.0.0
-* Rails 6.1.3
+* Ruby 3.0.2
+* Rails 6.1.4.1
 * Postgres 12
 
 **To start server, run:**
